@@ -16,5 +16,15 @@ namespace MvcStok.Controllers
             var urunler = db.tblurunler.ToList();
             return View(urunler);
         }
+        [HttpGet]
+        public ActionResult YeniUrun()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult YeniUrun(tblurunler k)
+        {
+            return View();
+        }
     }
 }
