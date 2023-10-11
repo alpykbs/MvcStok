@@ -38,7 +38,14 @@ namespace MvcStok.Controllers
         }
         public ActionResult UrunGetir(int id)
         {
+            List<SelectListItem> kat = (from x in db.tblkategori.ToList()
+                                         select new SelectListItem
+                                         {
+                                             Text = x.ad,
+                                             Value = x.id.ToString()
+                                         }).ToList();
             var ktgr = db.tblurunler.Find(id);
+            ViewBag.urunkategori=kat;
             return View("UrunGetir",ktgr);
         }
     }
