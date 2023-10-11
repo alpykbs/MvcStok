@@ -18,13 +18,28 @@ namespace MvcStok.Controllers
         }
         [HttpGet]
         public ActionResult YeniUrun()
-        {
+        {   List<SelectListItem> ktg = (from x in db.tblkategori.ToList()
+                                        select new SelectListItem
+                                        {
+                                            Text=x.ad,
+                                            Value=x.id.ToString()
+                                        }).ToList();
+            ViewBag.drop = ktg;
             return View();
         }
         [HttpPost]
-        public ActionResult YeniUrun(tblurunler k)
+        public ActionResult YeniUrun(tblurunler t)
         {
-            return View();
+            var ktgr = db.tblkategori.Where(x => x.id == t.tblkategori.id).FirstOrDefault();
+            t.tblkategori = ktgr;
+            db.tblurunler.Add(t);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult UrunGetir(int id)
+        {
+            var ktgr = db.tblurunler.Find(id);
+            return View("UrunGetir",ktgr);
         }
     }
 }
