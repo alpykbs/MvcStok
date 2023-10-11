@@ -47,7 +47,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ad" Type="varbinary" MaxLength="50" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
           <Property Name="marka" Type="varchar" MaxLength="50" />
           <Property Name="stok" Type="smallint" />
           <Property Name="alisfiyat" Type="decimal" Precision="18" Scale="2" />
@@ -178,7 +178,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ad" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="stok" Type="Int16" />
           <Property Name="alisfiyat" Type="Decimal" Precision="18" Scale="2" />
@@ -235,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DbMvcStokEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbMvcStokEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblkategori" EntityType="Self.tblkategori" />
           <EntitySet Name="tblmusteri" EntityType="Self.tblmusteri" />
           <EntitySet Name="tblpersonel" EntityType="Self.tblpersonel" />
@@ -263,7 +263,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DbMvcStokModelStoreContainer" CdmEntityContainer="DbMvcStokEntities">
+        <EntityContainerMapping StorageEntityContainer="DbMvcStokModelStoreContainer" CdmEntityContainer="DbMvcStokEntities1">
           <EntitySetMapping Name="tblkategori">
             <EntityTypeMapping TypeName="DbMvcStokModel.tblkategori">
               <MappingFragment StoreEntitySet="tblkategori">

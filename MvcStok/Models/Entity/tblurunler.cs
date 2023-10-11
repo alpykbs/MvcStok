@@ -21,7 +21,7 @@ namespace MvcStok.Models.Entity
         }
     
         public int id { get; set; }
-        public byte[] ad { get; set; }
+        public string ad { get; set; }
         public string marka { get; set; }
         public Nullable<short> stok { get; set; }
         public Nullable<decimal> alisfiyat { get; set; }

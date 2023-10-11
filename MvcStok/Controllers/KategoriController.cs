@@ -10,7 +10,7 @@ namespace MvcStok.Controllers
     public class KategoriController : Controller
     {
         // GET: Kategori
-        DbMvcStokEntities db = new DbMvcStokEntities();
+        DbMvcStokEntities1 db = new DbMvcStokEntities1();
         public ActionResult Index()
         {
             var kategoriler = db.tblkategori.ToList();
