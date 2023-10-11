@@ -7,8 +7,9 @@
 @using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
 {
     <h2>Yeni Kategori Güncelleme</h2>
+    @Html.HiddenFor(x => x.id, new { @class = "form-control" })
     <br />
-    @Html.TextBoxFor(x=>x.ad, new { @class="form-control"})
+    @Html.TextBoxFor(x => x.ad, new { @class = "form-control" })
     <br />
     <button class="btn btn-warning">Güncelle</button>
 }
