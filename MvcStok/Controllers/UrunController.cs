@@ -13,16 +13,17 @@ namespace MvcStok.Controllers
         DbMvcStokEntities1 db = new DbMvcStokEntities1();
         public ActionResult Index()
         {
-            var urunler = db.tblurunler.ToList();
+            var urunler = db.tblurunler.Where(x => x.durum == true).ToList();
             return View(urunler);
         }
         [HttpGet]
         public ActionResult YeniUrun()
-        {   List<SelectListItem> ktg = (from x in db.tblkategori.ToList()
+        {
+            List<SelectListItem> ktg = (from x in db.tblkategori.ToList()
                                         select new SelectListItem
                                         {
-                                            Text=x.ad,
-                                            Value=x.id.ToString()
+                                            Text = x.ad,
+                                            Value = x.id.ToString()
                                         }).ToList();
             ViewBag.drop = ktg;
             return View();
@@ -39,14 +40,34 @@ namespace MvcStok.Controllers
         public ActionResult UrunGetir(int id)
         {
             List<SelectListItem> kat = (from x in db.tblkategori.ToList()
-                                         select new SelectListItem
-                                         {
-                                             Text = x.ad,
-                                             Value = x.id.ToString()
-                                         }).ToList();
+                                        select new SelectListItem
+                                        {
+                                            Text = x.ad,
+                                            Value = x.id.ToString()
+                                        }).ToList();
             var ktgr = db.tblurunler.Find(id);
-            ViewBag.urunkategori=kat;
-            return View("UrunGetir",ktgr);
+            ViewBag.urunkategori = kat;
+            return View("UrunGetir", ktgr);
+        }
+        public ActionResult UrunGuncelle(tblurunler p)
+        {
+            var urun = db.tblurunler.Find(p.id);
+            urun.ad = p.ad;
+            urun.marka = p.marka;
+            urun.satisfiyat = p.satisfiyat;
+            urun.alisfiyat = p.alisfiyat;
+            urun.stok = p.stok;
+            var ktg = db.tblkategori.Where(x => x.id == p.tblkategori.id).FirstOrDefault();
+            urun.kategori = ktg.id;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult UrunSil(tblurunler p1)
+        {
+            var UrunBul = db.tblurunler.Find(p1.id);
+            UrunBul.durum = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

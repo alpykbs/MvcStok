@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbMvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbMvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblkategori">
           <Key>
             <PropertyRef Name="id" />
@@ -53,6 +53,7 @@
           <Property Name="alisfiyat" Type="decimal" Precision="18" Scale="2" />
           <Property Name="satisfiyat" Type="decimal" Precision="18" Scale="2" />
           <Property Name="kategori" Type="int" />
+          <Property Name="durum" Type="bit" />
         </EntityType>
         <Association Name="FK_tblsatislar_tblmusteri">
           <End Role="tblmusteri" Type="Self.tblmusteri" Multiplicity="0..1" />
@@ -125,8 +126,7 @@
             <End Role="tblurunler" EntitySet="tblurunler" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbMvcStokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -186,6 +186,7 @@
           <Property Name="kategori" Type="Int32" />
           <NavigationProperty Name="tblkategori" Relationship="Self.FK_tblurunler_tblkategori" FromRole="tblurunler" ToRole="tblkategori" />
           <NavigationProperty Name="tblsatislar" Relationship="Self.FK_tblsatislar_tblurunler" FromRole="tblurunler" ToRole="tblsatislar" />
+          <Property Name="durum" Type="Boolean" />
         </EntityType>
         <Association Name="FK_tblurunler_tblkategori">
           <End Role="tblkategori" Type="Self.tblkategori" Multiplicity="0..1" />
@@ -308,6 +309,7 @@
           <EntitySetMapping Name="tblurunler">
             <EntityTypeMapping TypeName="DbMvcStokModel.tblurunler">
               <MappingFragment StoreEntitySet="tblurunler">
+                <ScalarProperty Name="durum" ColumnName="durum" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="ad" ColumnName="ad" />
                 <ScalarProperty Name="marka" ColumnName="marka" />
