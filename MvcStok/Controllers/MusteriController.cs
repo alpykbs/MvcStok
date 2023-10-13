@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcStok.Models.Entity;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcStok.Controllers
 {
@@ -11,9 +13,10 @@ namespace MvcStok.Controllers
     {
         // GET: Musteri
         DbMvcStokEntities1 db = new DbMvcStokEntities1();
-        public ActionResult Index()
+        public ActionResult Index(int sayfa = 1)
         {
-            var musterilistele = db.tblmusteri.ToList();
+            //var musterilistele = db.tblmusteri.ToList();
+            var musterilistele = db.tblmusteri.ToList().ToPagedList(sayfa, 2);
             return View(musterilistele);
         }
     }

@@ -1,5 +1,7 @@
 ﻿@using MvcStok.Models.Entity;
-@model List<tblmusteri>
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<tblmusteri>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
