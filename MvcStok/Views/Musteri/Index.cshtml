@@ -31,6 +31,9 @@
         </tr>
     }
 </table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new {sayfa}))
+
 <a href="/Kategori/YeniKategori/" class="btn btn-primary">Yeni Müşteri Ekle</a>
 
 
