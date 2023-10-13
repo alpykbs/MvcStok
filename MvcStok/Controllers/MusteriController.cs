@@ -16,7 +16,7 @@ namespace MvcStok.Controllers
         public ActionResult Index(int sayfa = 1)
         {
             //var musterilistele = db.tblmusteri.ToList();
-            var musterilistele = db.tblmusteri.ToList().ToPagedList(sayfa, 3);
+            var musterilistele = db.tblmusteri.Where(x => x.durum == true).ToList().ToPagedList(sayfa, 3);
             return View(musterilistele);
         }
         [HttpGet]
@@ -28,6 +28,13 @@ namespace MvcStok.Controllers
         public ActionResult YeniMusteri(tblmusteri p)
         {
             db.tblmusteri.Add(p);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult MusteriSil(tblmusteri p)
+        {
+            var MusteriBul = db.tblmusteri.Find(p.id);
+            MusteriBul.durum = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
