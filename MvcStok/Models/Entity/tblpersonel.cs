@@ -11,8 +11,7 @@ namespace MvcStok.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tblpersonel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,7 @@ namespace MvcStok.Models.Entity
         }
     
         public int id { get; set; }
-        public string ad { get; set; }       
+        public string ad { get; set; }
         public string soyad { get; set; }
         public string departman { get; set; }
     
