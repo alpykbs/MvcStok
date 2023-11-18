@@ -27,6 +27,11 @@ namespace MvcStok.Controllers
         [HttpPost]
         public ActionResult YeniMusteri(tblmusteri p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("YeniMusteri");
+            }
+            p.durum = true;
             db.tblmusteri.Add(p);
             db.SaveChanges();
             return RedirectToAction("Index");
