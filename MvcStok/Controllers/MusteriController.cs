@@ -13,6 +13,7 @@ namespace MvcStok.Controllers
     {
         // GET: Musteri
         DbMvcStokEntities1 db = new DbMvcStokEntities1();
+        [Authorize]
         public ActionResult Index(int sayfa = 1)
         {
             //var musterilistele = db.tblmusteri.ToList();
